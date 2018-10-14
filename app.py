@@ -61,11 +61,7 @@ def handle_message(event):
     gid = event.source.sender_id #get group_id
     profile = line_bot_api.get_profile(sender)
 
-
-    data=text.split('-')
-    if(data[0]=='menu'):
-        menu = "1. lihat-[Id]\n2. tambah-[Id]-[judul]-[penerbit]-[tahun]\n3. hapus-[Id]\n4. ganti-[Id lama]-[Id baru]-[judul baru]-[penerbit baru]-[tahun baru]\n5. semua"
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=menu))
+line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text+' '+profile.display_name))
 
 import os
 if __name__ == "__main__":
