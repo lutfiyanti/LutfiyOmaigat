@@ -58,7 +58,7 @@ def caribuku(aidi):
 
         # munculin semua, ga rapi, ada 'u' nya
         # all_data = data['data_angkatan'][0]
-        data= "Id : "+aidi+"\nJudul : "+judul+"\n Penerbit : "+penerbit+"\n Tahun :"
+        data= "Id : "+aidi+"\nJudul : "+judul+"\n Penerbit : "+penerbit+"\n Tahun :"+tahun
         return data
         # return all_data
 
