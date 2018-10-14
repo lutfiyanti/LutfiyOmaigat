@@ -166,7 +166,7 @@ def handle_message(event):
     elif(data[0]=='ganti'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=updatebuku(data[1],data[2],data[3],data[4], data[5])))
     elif(data[0]=='semua'):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=allsbuku()))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=allbuku()))
     elif(data[0]=='menu'):
         menu = "1. lihat-[Id]\n2. tambah-[Id]-[judul]-[penerbit]-[tahun]\n3. hapus-[Id]\n4. ganti-[Id lama]-[Id baru]-[judul baru]-[penerbit baru]-[tahun baru]\n5. semua"
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=menu))
