@@ -36,9 +36,9 @@ from linebot.models import (
 app = Flask(__name__)
 
 # Channel Access Token
-line_bot_api = LineBotApi('0TIzGGD1MTvfyOmtEx4tt091L/qwrtS4fYO9I0h95dZto0Q5vpB+RL1YjFmIFAUtDsnIC6PVShMOZeZWtywYWNjYu0IcIfnExwMA8hG6YNVhLM2zGWLhOq5GWMCJYujrcWbg+FpXI8y8ERDO3wnDGwdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi('N+2Dyafq9MU7670K9Tu6TPdxzdTmCI6DW2zk/2GFHEpqzU76krjB8FqSdsOQPxsK8yk/W5LZMtgMKSNMuzCU7PtY2oj/2lYCl2+5J/IXtXRmXAeYt5TndqaDm7fFYOmeb4QmeHGd6q1A7txOpP7ZoAdB04t89/1O/w1cDnyilFU=')
 # Channel Secret
-handler = WebhookHandler('071391eefb0b5a3c01d3fc7c53539527')
+handler = WebhookHandler('acd0a3afda7cfff11db1ef4a0c81e498')
 #===========[ NOTE SAVER ]=======================
 notes = {}
 
@@ -136,7 +136,7 @@ def handle_message(event):
     if(data[0]=='lihat'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=carikamar(data[1])))
     elif(data[0]=='tambah'):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=inputkamar(data[1],data[2],data[3],data[4]),data[5],data[6])))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=inputkamar(data[1],data[2],data[3],data[4],data[5],data[6])))
     elif(data[0]=='hapus'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=hapuskamar(data[1])))
     elif(data[0]=='ganti'):
@@ -146,6 +146,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = menu))
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "Coba pakai keyword yang bener deh, ketik menu coba buat cek keywordnya"))
+
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
