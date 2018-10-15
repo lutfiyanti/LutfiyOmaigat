@@ -43,7 +43,7 @@ handler = WebhookHandler('acd0a3afda7cfff11db1ef4a0c81e498')
 notes = {}
 
 #input mencari
-def carikamar(nomor,status,tipe,harga,atas_nama,hp):
+def carikamar(nomor):
     URLkamar = "http://www.aditmasih.tk/api_lutfyh/show.php?nomor=" + nomor
     r = requests.get(URLkamar)
     data = r.json()
