@@ -64,10 +64,10 @@ def cariproduk(nama_produk):
             # all_data = data['teman'][0]
             data= data + "\nNama Produk : "+nama_produk+"\nNomor Sertifikat : "+nomor_sertifikat+"\nNama Produsen : "+nama_produsen+"\nBerlaku Hingga : "+berlaku_hingga
             # return all_data
-        return print (data)
+        return (data)
 
     elif(status == "error"):
-        return print (err)
+        return (err)
 
 # Post Request
 @app.route("/callback", methods=['POST'])
