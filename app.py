@@ -60,12 +60,12 @@ def cariproduk(nama_produk):
 
         # munculin semua, ga rapi, ada 'u' nya
         # all_data = data['teman'][0]
-        data= "Nama Produk : "+nama_produk+"\nNomor Sertifikat : "+nomor_sertifikat+"\nNama Produsen : "+nama_produsen+"\nBerlaku Hingga : "+berlaku_hingga+"\nTes : "+tes
-        return print (data)
+        produk= "Nama Produk : "+nama_produk+"\nNomor Sertifikat : "+nomor_sertifikat+"\nNama Produsen : "+nama_produsen+"\nBerlaku Hingga : "+berlaku_hingga+"\nTes : "+tes
+        return (produk)
         # return all_data
 
     elif(status == "error"):
-        return print (err)
+        return (err)
 
 
 # Post Request
@@ -87,9 +87,9 @@ def handle_message(event):
     gid = event.source.sender_id #get group_id
     profile = line_bot_api.get_profile(sender)
 
-    data=text.split('-')
+    produk=text.split('-')
     if(produk[0]=='lihat'):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=cariproduk(data[1])))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=cariproduk(produk[1])))
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "Coba pakai keyword yang bener deh, find-(nama produk)"))
 
