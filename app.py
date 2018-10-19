@@ -51,22 +51,23 @@ def cariproduk(nama_produk):
     
     status = produk['status']
     if(status == "success"):
-        nama_produk = produk['data'][0]['nama_produk']
-        nomor_sertifikat = produk['data'][0]['nomor_sertifikat']
-        nama_produsen = produk['data'][0]['nama_produsen']
-        berlaku_hingga = produk['data'][0]['berlaku_hingga']
-        tes = produk['data'][0]['tes']
+        data = ''
+        # for i in produk['data']:
+        for i in range(0, len(produk['data'])):
+            nama_produk = produk['data'][i]['nama_produk']
+            nomor_sertifikat = produk['data'][i]['nomor_sertifikat']
+            nama_produsen = produk['data'][i]['nama_produsen']
+            berlaku_hingga = produk['data'][i]['berlaku_hingga']
         
 
-        # munculin semua, ga rapi, ada 'u' nya
-        # all_data = data['teman'][0]
-        produk= "Nama Produk : "+nama_produk+"\nNomor Sertifikat : "+nomor_sertifikat+"\nNama Produsen : "+nama_produsen+"\nBerlaku Hingga : "+berlaku_hingga+"\nTes : "+tes
-        return (produk)
-        # return all_data
+            # munculin semua, ga rapi, ada 'u' nya
+            # all_data = data['teman'][0]
+            data= data + "\nNama Produk : "+nama_produk+"\nNomor Sertifikat : "+nomor_sertifikat+"\nNama Produsen : "+nama_produsen+"\nBerlaku Hingga : "+berlaku_hingga
+            # return all_data
+        return print (data)
 
     elif(status == "error"):
-        return (err)
-
+        return print (err)
 
 # Post Request
 @app.route("/callback", methods=['POST'])
