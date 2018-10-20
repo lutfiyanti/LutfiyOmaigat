@@ -47,7 +47,7 @@ def cariproduk(nama_produk):
     URLproduk = "http://api.agusadiyanto.net/halal/?menu=nama_produk&query=" + nama_produk
     r = requests.get(URLproduk)
     produk = r.json()
-    err = "data tidak ditemukan"
+    err = "Produk tidak ada di database kami, ada beberapa kemungkinan antara lain :\n1. Sertifikasi halal sudah tidak valid.\n2. Produk masih dalam proses untuk mendapatkan sertifikasi halal.\n3. Anda salah mengetik nama produk.\nApabila anda masih ingin memastikan silahkan cek di web resmi MUI ilang.in/ProdukHalal\nTerimakasih :)"
     
     status = produk['status']
     if(status == "success"):
@@ -62,12 +62,43 @@ def cariproduk(nama_produk):
 
             # munculin semua, ga rapi, ada 'u' nya
             # all_data = data['teman'][0]
-            data= data + "\nNama Produk : "+nama_produk+"\nNomor Sertifikat : "+nomor_sertifikat+"\nNama Produsen : "+nama_produsen+"\nBerlaku Hingga : "+berlaku_hingga
+            data= data + "\nNama Produk : "+nama_produk+"\nNomor Sertifikat : "+nomor_sertifikat+"\nNama Produsen : "+nama_produsen+"\nBerlaku Hingga : "+berlaku_hingga+"\n"
             # return all_data
         return (data)
 
     elif(status == "error"):
         return (err)
+import requests, json
+
+def cariproduk(nama_produsen):
+    URLproduk = "http://api.agusadiyanto.net/halal/?menu=nama_produsen&query=" + nama_produsen
+    r = requests.get(URLproduk)
+    produk = r.json()
+    err = "Mungkin nama produsen yang anda masukan salah atau produk dari produsen tersebut belum terdaftar.\nJika anda masih ragu, silahkan cek ilang.in/ProdukHalal \nTerimaksih :)"
+    
+    status = produk['status']
+    if(status == "success"):
+        data = ''
+        # for i in produk['data']:
+        for i in range(0, len(produk['data'])):
+            nama_produk = produk['data'][i]['nama_produk']
+            nomor_sertifikat = produk['data'][i]['nomor_sertifikat']
+            nama_produsen = produk['data'][i]['nama_produsen']
+            berlaku_hingga = produk['data'][i]['berlaku_hingga']
+        
+
+            # munculin semua, ga rapi, ada 'u' nya
+            # all_data = data['teman'][0]
+            data= data + "\nNama Produk : "+nama_produk+"\nNomor Sertifikat : "+nomor_sertifikat+"\nNama Produsen : "+nama_produsen+"\nBerlaku Hingga : "+berlaku_hingga+"\n"
+            # return all_data
+        return (data)
+
+    elif(status == "error"):
+        return (err)
+
+
+cariproduk ("KAO")
+    
 
 # Post Request
 @app.route("/callback", methods=['POST'])
@@ -89,10 +120,14 @@ def handle_message(event):
     profile = line_bot_api.get_profile(sender)
 
     produk=text.split('-')
-    if(produk[0]=='find'):
+    if(produk[0]=='find-produk'):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text="Halo"+profile.display_name+"Berikut adalah produk bersertifikasi halal dari hasil pecarian"+event.message.text+"\n"))
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=cariproduk(produk[1])))
+    elif(produk[0]=='find-produsen'):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text="Halo"+profile.display_name+"Berikut adalah produk bersertifikasi halal dari hasil pecarian"+event.message.text+"\n"))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=cariprodusen(produk[1])))
     else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "Coba pakai keyword yang bener deh, find-(nama produk)"))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "Coba pakai keyword yang bener deh, ada dua menu :\n1. find-(nama produk)\n2.find-(nama-produsen)"))
 
 import os
 if __name__ == "__main__":
