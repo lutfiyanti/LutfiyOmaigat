@@ -123,7 +123,7 @@ def handle_message(event):
     if(produk[0]=='produk'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text="Hai "+profile.display_name+" ini dia hasil pencarian "+text+"\n"+cariproduk(produk[1])))
     elif(produk[0]=='produsen'):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=cariprodusen(produk[1])))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text="Hai "+profile.display_name+" ini dia hasil pencarian "+text+"\n"+cariprodusen(produk[1])))
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "Hai "+profile.display_name+", coba pakai keyword yang bener deh, ada dua menu :\n1. produk-(nama produk)\n2. produsen-(nama produsen)"))
 
