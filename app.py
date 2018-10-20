@@ -121,7 +121,7 @@ def handle_message(event):
 
     produk=text.split('-')
     if(produk[0]=='produk'):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text="Ini dia hasilnya\n"+cariproduk(produk[1])))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text="Hai "+profile.display_name+" ini dia hasil pencarian "+text+"\n"+cariproduk(produk[1])))
     elif(produk[0]=='produsen'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=cariprodusen(produk[1])))
     else:
