@@ -120,14 +120,14 @@ def handle_message(event):
     profile = line_bot_api.get_profile(sender)
 
     produk=text.split('-')
-    if(produk[0]=='find-produk'):
+    if(produk[0]=='produk'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text="Halo"+profile.display_name+"Berikut adalah produk bersertifikasi halal dari hasil pecarian"+event.message.text+"\n"))
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=cariproduk(produk[1])))
-    elif(produk[0]=='find-produsen'):
+    elif(produk[0]=='produsen'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text="Halo"+profile.display_name+"Berikut adalah produk bersertifikasi halal dari hasil pecarian"+event.message.text+"\n"))
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=cariprodusen(produk[1])))
     else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "Coba pakai keyword yang bener deh, ada dua menu :\n1. find-(nama produk)\n2.find-(nama-produsen)"))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "Coba pakai keyword yang bener deh, ada dua menu :\n1. produk-(nama produk)\n2. produsen-(nama produsen)"))
 
 import os
 if __name__ == "__main__":
