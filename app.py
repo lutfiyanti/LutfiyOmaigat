@@ -70,7 +70,7 @@ def cariproduk(nama_produk):
         return (err)
 import requests, json
 
-def cariproduk(nama_produsen):
+def cariprodusen(nama_produsen):
     URLproduk = "http://api.agusadiyanto.net/halal/?menu=nama_produsen&query=" + nama_produsen
     r = requests.get(URLproduk)
     produk = r.json()
@@ -121,7 +121,7 @@ def handle_message(event):
 
     produk=text.split('-')
     if(produk[0]=='produk'):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=cariproduk(produk[1])))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text="Ini dia hasilnya\n"+cariproduk(produk[1])))
     elif(produk[0]=='produsen'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=cariprodusen(produk[1])))
     else:
